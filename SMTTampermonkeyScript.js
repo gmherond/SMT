@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SMT
 // @namespace    http://tampermonkey.net/
-// @version      3.1.3
+// @version      3.1.4
 // @description  Adds a metrics tracker "mini app" that keeps tracks of the amount of processed tasks and the total time a user has worked on a Sagemaker job.
 // @author       elgustav
 // @match        https://v6ke42cho6.labeling.us-east-1.sagemaker.aws/
