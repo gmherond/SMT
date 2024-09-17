@@ -1,4 +1,4 @@
-let SMT_HTML = `
+let SMT_HTML = '
     <div id="metrics-tracker" class="tracker-bottom-right">
         <button id="show-button" onclick="toggleTracker()" class="tracker-btn hide"><svg id="show-btn-icon"
                 class="mt-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -120,4 +120,4 @@ let SMT_HTML = `
             </div>
         </div>
     </div>
-`;
+';
