@@ -1,3 +1,4 @@
+alert("hola");
 let SMT_HTML = `
     <div id="metrics-tracker" class="tracker-bottom-right">
         <button id="show-button" onclick="toggleTracker()" class="tracker-btn hide"><svg id="show-btn-icon"
