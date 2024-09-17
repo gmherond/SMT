@@ -1,4 +1,4 @@
-console.log("3.1.3");
+console.log("SMT Version: 3.1.3");
 let SMT_HTML = `
     <div id="metrics-tracker" class="tracker-bottom-right">
         <button id="show-button" onclick="toggleTracker()" class="tracker-btn hide"><svg id="show-btn-icon"
