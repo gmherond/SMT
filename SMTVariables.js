@@ -1076,3 +1076,16 @@ let SMT_JS = `
         }
     }
 `;
+
+$( document ).ready(function() {
+    let SMT_div = document.createElement("div");
+    SMT_div.style = "font-size:16px;";
+    SMT_div.innerHTML+=SMT_HTML;
+    document.body.append(SMT_div);
+    let style = document.createElement('style');
+    style.innerHTML+=SMT_CSS;
+    document.head.prepend(style);
+    let script = document.createElement('script');
+    script.textContent = SMT_JS;
+    document.body.append(script);
+});
