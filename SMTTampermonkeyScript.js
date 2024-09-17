@@ -8,9 +8,12 @@
 // @icon         https://cdn-icons-png.flaticon.com/512/6687/6687065.png
 // @grant        none
 // @require      http://code.jquery.com/jquery-3.7.1.min.js
+// @downloadURL  https://raw.githubusercontent.com/gmherond/SMT/main/SMTTampermonkeyScript.js
 // ==/UserScript==
 
 /*
+Changelog 3.1.3
+-Added a download URL so that the user can automatically update the script without downloading anything.
 Changelog 3.1.2
 -The tracker should now keep track of the last processed data even if a job runs out of tasks.
 -If the user releases a job and tries to change the display mode of the timer, it will change properly now.
