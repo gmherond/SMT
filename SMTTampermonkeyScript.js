@@ -1,14 +1,15 @@
 // ==UserScript==
 // @name         SMT
 // @namespace    http://tampermonkey.net/
-// @version      3.1.5
+// @version      3.2.0
 // @description  Adds a metrics tracker "mini app" that keeps tracks of the amount of processed tasks and the total time a user has worked on a Sagemaker job.
-// @author       elgustav
-// @match        https://v6ke42cho6.labeling.us-east-1.sagemaker.aws/
-// @icon         https://cdn-icons-png.flaticon.com/512/6687/6687065.png
+// @author       elgustav@
+// @include      https://*.sagemaker.aws/
+// @icon         https://raw.githubusercontent.com/gmherond/SMT/refs/heads/main/assets/SMT%20Icon.svg
 // @grant        none
 // @require      http://code.jquery.com/jquery-3.7.1.min.js
 // @downloadURL  https://raw.githubusercontent.com/gmherond/SMT/main/SMTTampermonkeyScript.js
+// @updateURL    https://raw.githubusercontent.com/gmherond/SMT/main/SMTTampermonkeyScript.js
 // ==/UserScript==
 
 /*
@@ -26,7 +27,7 @@ Cloudwatch Dashboard.
 for that job.
 */
 
-console.log("SMT Version 3.1.4");
+console.log("SMT Version 3.2.0");
 let SMT_HTML = `
     <div id="metrics-tracker" class="tracker-bottom-right">
         <button id="show-button" onclick="toggleTracker()" class="tracker-btn hide"><svg id="show-btn-icon"
