@@ -8,11 +8,15 @@
 // @icon         https://raw.githubusercontent.com/gmherond/SMT/refs/heads/main/assets/SMT%20Icon.svg
 // @grant        none
 // @require      http://code.jquery.com/jquery-3.7.1.min.js
-// @downloadURL  https://raw.githubusercontent.com/gmherond/SMT/main/SMTTampermonkeyScript.js
-// @updateURL    https://raw.githubusercontent.com/gmherond/SMT/main/SMTTampermonkeyScript.js
+// @downloadURL  https://github.com/gmherond/SMT/raw/refs/heads/main/SMT-Tampermonkey-Script.user.js
+// @updateURL    https://github.com/gmherond/SMT/raw/refs/heads/main/SMT-Tampermonkey-Script.user.js
 // ==/UserScript==
 
 /*
+Changelog 3.2.0
+-Replaced labels for icons to reduce the space ocuppied by the tracker.
+-Replaced font.
+-Added an option to edit the current task count and the total timer.
 Changelog 3.1.5
 -Added an icon for Sagemaker.
 Changelog 3.1.3
