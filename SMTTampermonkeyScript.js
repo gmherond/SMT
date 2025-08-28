@@ -33,7 +33,7 @@ Cloudwatch Dashboard.
 for that job.
 */
 
-console.log("SMT Version 3.2.0");
+console.log("SMT Version 3.2.1");
 
 let SMT_HTML = `
 	<div id="smt-background" class="hide"></div>
