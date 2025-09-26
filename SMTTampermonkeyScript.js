@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SMT
 // @namespace    http://tampermonkey.net/
-// @version      3.2.1
+// @version      3.2.2
 // @description  Adds a metrics tracker "mini app" that keeps tracks of the amount of processed tasks and the total time a user has worked on a Sagemaker job.
 // @author       elgustav@
 // @include      https://*.sagemaker.aws/
@@ -13,6 +13,8 @@
 // ==/UserScript==
 
 /*
+Changelog 3.2.2 09/02/2025
+-Fixed bug where sometimes the first task being processed on a new tab wasn't being added once processed.
 Changelog 3.2.1
 -Fixed bug where if Sagemaker displayed negative time the total time value would be displayed as NaN.
 -Replaced main labels with icons to reduce the space ocuppied by the tracker.
@@ -33,7 +35,7 @@ Cloudwatch Dashboard.
 for that job.
 */
 
-console.log("SMT Version 3.2.1");
+console.log("SMT Version 3.2.2");
 
 let SMT_HTML = `
 	<div id="smt-background" class="hide"></div>
@@ -661,6 +663,9 @@ let ifSpinner = false;
 //Makes a new Date type object that will determine the current date for ID purposes.
 let curDate = new Date();
 
+//Check if a spinner was created at page load to avoid additional counts
+let firstLoadInterval;
+
 let mousePositionInterval;
 
 let timeBefore;
@@ -686,6 +691,8 @@ let firstLoad = true;
 let editingCounter=false;
 let editingTimer=false;
 let editingDeclinedCounter=false;
+
+let startTime= Date.now();
 
 //sets an interval that checks all the time if some part of the website have loaded and if the page isn't the default Sagemaker URL.
 initInterval = setInterval(initialize, 0);
@@ -1028,6 +1035,10 @@ function initialize() {//Sets up variables once part of the website loads
 			spinnerInterval = setInterval(checkSpinner, 1);
 			errorCheckInterval = setInterval(closeMessage, 1);
 
+			firstLoadInterval = setInterval(checkFirstLoad, 1);
+
+			
+
 			//Stops this function (initialize()) from running.
 			clearInterval(initInterval);
 		}
@@ -1133,6 +1144,19 @@ function displayCounter() {
 
 }
 
+function checkFirstLoad(){
+	//Checks if its the first time loading a task/spinner. if there was no initial spinner and the task already loaded this function checks if the task's details exist and disables first load to make sure the current task is counted properly.
+	if(firstLoad==false){
+		clearInterval(firstLoadInterval);
+	}
+	else{
+		if(document.getElementsByClassName("completion-timer").length>0){
+			console.log("found task details, changing first load to false");
+			firstLoad = false;
+		}
+	}
+}
+
 function checkSpinner() {
 	//Checks if a loading "spinner" element exists. This is because each time a task is completed, a spinner shows up until a new task loads up.
 	//If it does, the values of the counter and the timer increase accordingly. This is executed only once until the spinner disappears, so that it doesn't increment multiple times at once.
@@ -1154,12 +1178,14 @@ function checkSpinner() {
 		if (ifSpinner == true) {
 			if (checkErrorMessages() == false) {
 				if(firstLoad==false){
-					addToCounter();
-					let currentDateTime = new Date();
-					let timePassed = ((currentDateTime-timeBefore)/1000).toFixed(0);
-					localStorage.setItem(curTimeID, sumTimes(lastTime,"00:"+timePassed));
-					addToTimer();
-					localStorage.setItem(curTimeID,"00:00");
+					if(Date.now()-startTime>2000){
+						addToCounter();
+						let currentDateTime = new Date();
+						let timePassed = ((currentDateTime-timeBefore)/1000).toFixed(0);
+						localStorage.setItem(curTimeID, sumTimes(lastTime,"00:"+timePassed));
+						addToTimer();
+						localStorage.setItem(curTimeID,"00:00");
+					}
 				}
 				else firstLoad=false;
 			}
